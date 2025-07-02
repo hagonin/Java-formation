@@ -1,0 +1,114 @@
+body {
+	background: #f7f7fa;
+	font-family: 'Segoe UI', Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.form {
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#formulaire {
+	display: flex;
+	justify-content: center;
+	margin: 30px 0;
+}
+
+#inputTache {
+	padding: 10px;
+	font-size: 1rem;
+	border: 1px solid #bbb;
+	border-radius: 4px 0 0 4px;
+	outline: none;
+	width: 250px;
+}
+
+#formulaire button {
+	padding: 10px 20px;
+	font-size: 1rem;
+	border: none;
+	background: #4f8cff;
+	color: #fff;
+	border-radius: 0 4px 4px 0;
+	cursor: pointer;
+	transition: background 0.2s;
+}
+
+#formulaire button:hover {
+	background: #2563eb;
+}
+
+#listeTaches {
+	max-width: 400px;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.tache {
+	display: flex;
+	align-items: center;
+	background: #fff;
+	margin-bottom: 12px;
+	padding: 14px 18px;
+	border-radius: 6px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	transition: box-shadow 0.2s;
+}
+
+.tache span {
+	flex: 1;
+	font-size: 1.1rem;
+}
+
+.tache button {
+	margin-left: 10px;
+	padding: 7px 14px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.95rem;
+	transition: background 0.2s, color 0.2s;
+}
+
+.tache button:first-of-type {
+	background: #22c55e;
+	color: #fff;
+}
+
+.tache button:first-of-type:hover {
+	background: #16a34a;
+}
+
+.tache button:last-of-type {
+	background: #ef4444;
+	color: #fff;
+}
+
+.tache button:last-of-type:hover {
+	background: #b91c1c;
+}
+
+.tache.validee {
+	background: #e0f7e9;
+	text-decoration: line-through;
+	color: #888;
+	opacity: 0.7;
+}
+
+#todoCounter {
+	/* Optional: override Bootstrap for a custom look */
+	background: #e3f2fd;
+	border-radius: 8px;
+	padding: 8px 0;
+}
