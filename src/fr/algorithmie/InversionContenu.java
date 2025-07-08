@@ -10,6 +10,7 @@ public class InversionContenu {
             arrayCopy[i]= array[array.length - 1 - i];
         }
         System.out.println("\n--- Tableau original ---");
+
         for (int val : array ) {
             System.out.print(val + " ");
         }
