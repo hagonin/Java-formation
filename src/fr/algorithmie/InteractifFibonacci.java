@@ -2,23 +2,37 @@ package fr.algorithmie;
 
 import java.util.Scanner;
 
-
+/**
+ * Cette classe permet à l'utilisateur de calculer le terme de rang N de la suite de Fibonacci.
+ * L'utilisateur saisit le rang, et le programme affiche le résultat.
+ */
 public class InteractifFibonacci {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Entrez le rang N (> = 0): ");
+
         int n = sc.nextInt();
+
         int result = computeFibonacci(n);
+
         System.out.println("Fibonacci de rang " + n + " = " + result);
+
         sc.close();
     }
 
+    /**
+     * Calcule le terme de rang n de la suite de Fibonacci
+     *
+     * @param n rang du terme à calculer
+     * @return valeur du terme de rang n
+     */
     public static int computeFibonacci(int n) {
         if (n <= 0){
             return 0;
         }
         int precedent = 0;
         int courant = 1;
+        // Calcul itératif de la suite de Fibonacci
         for (int i = 1; i < n; i++) {
             int suivant = precedent + courant;
             precedent = courant;
@@ -28,8 +42,7 @@ public class InteractifFibonacci {
     }
 }
 
-
-// Another method
+// Variante commentée pour gérer explicitement les cas 0 et 1
 /*
 public class InteractifFibonacci {
     public static void main(String[] args) {
