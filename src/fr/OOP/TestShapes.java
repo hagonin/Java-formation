@@ -1,0 +1,121 @@
+package fr.OOP;
+
+public class TestShapes {
+    public static void main(String[] args) {
+        // Test Point class
+        System.out.println("Testing Point class:");
+        Point defaultPoint = new Point();
+        System.out.println("Default Point: " + defaultPoint); // Should print default values
+
+        Point customPoint = new Point(10, 20);
+        System.out.println("Custom Point: " + customPoint); // Should print [10,20] or similar
+
+        // If you have getX() and getY() methods, test them:
+        // System.out.println("Custom Point X: " + customPoint.getX());
+        // System.out.println("Custom Point Y: " + customPoint.getY());
+
+        // Test FigureUtil class
+        System.out.println("\nTesting FigureUtil:");
+
+        Circle randomCircle = FigureUtil.getRandomCircle();
+        System.out.println("Random Circle: " + randomCircle);
+
+        Rectangle randomRectangle = FigureUtil.getRandomRectangle();
+        System.out.println("Random Rectangle: " + randomRectangle);
+
+        // Optionally, test multiple random shapes
+        System.out.println("\nMultiple random shapes:");
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Circle " + (i + 1) + ": " + FigureUtil.getRandomCircle());
+            System.out.println("Rectangle " + (i + 1) + ": " + FigureUtil.getRandomRectangle());
+        }
+
+        // Test Square (no inheritance)
+        System.out.println("\nTesting Square (no inheritance):");
+        Point square1 = new Point(5,5);
+        Square square = new Square(square1, 10);
+        System.out.println("Square: " + square);
+        square.display();
+
+        // Test SquareHerite (inherits from Rectangle)
+        System.out.println("\nTesting SquareHerite (inherits from Rectangle):");
+        SquareHerite squareHerite = new SquareHerite(new Point(15, 15), 8);
+        System.out.println("SquareHerite: " + squareHerite);
+        squareHerite.display();
+
+        // Test equals method for Point
+        System.out.println("\nTesting equals method for Point:");
+        Point p1 = new Point(1, 2);
+        Point p2 = new Point(1, 2);
+        Point p3 = new Point(2, 3);
+        System.out.println("p1.equals(p2): " + p1.equals(p2)); // true
+        System.out.println("p1.equals(p3): " + p1.equals(p3)); // false
+
+        // Test equals method for Square and Rectangle
+        System.out.println("\nTesting equals method for Square, Rectangle, and SquareHerite:");
+        Square squareA = new Square(new Point(0, 0), 5);
+        Square squareB = new Square(new Point(0, 0), 5);
+
+        Rectangle rectA = new Rectangle(new Point(0, 0), 5, 5);
+        Rectangle rectB = new Rectangle(new Point(0, 0), 5, 6);
+
+        SquareHerite squareHeriteA = new SquareHerite(new Point(0, 0), 5);
+        SquareHerite squareHeriteB = new SquareHerite(new Point(0, 0), 6);
+
+        System.out.println("squareA.equals(squareB): " + squareA.equals(squareB)); // true
+        System.out.println("squareA.equals(rectA): " + squareA.equals(rectA)); // true
+        System.out.println("rectA.equals(squareA): " + rectA.equals(squareA)); // true
+        System.out.println("rectA.equals(rectB): " + rectA.equals(rectB)); // false
+        System.out.println("squareA.equals(squareHeriteA): " + squareA.equals(squareHeriteA)); // true
+        System.out.println("squareHeriteA.equals(squareA): " + squareHeriteA.equals(squareA)); // true
+        System.out.println("squareHeriteA.equals(squareHeriteB): " + squareHeriteA.equals(squareHeriteB)); // false
+
+        // Test all subclasses of Figure explicitly
+        System.out.println("\nTesting all subclasses of Figure:");
+        Figure circle = new Circle(new Point(3, 4), 7);
+        Figure rectangle = new Rectangle(new Point(1, 2), 5, 8);
+        Figure figureSquare = new Square(new Point(6, 6), 4);
+        Figure figureSquareHerite = new SquareHerite(new Point(8, 8), 5);
+
+        Figure[] allFigures = {circle, rectangle, figureSquare, figureSquareHerite};
+
+        for (int i = 0; i < allFigures.length; i++) {
+            System.out.println("Subclass Figure " + (i+1) + ": " + allFigures[i]);
+            allFigures[i].display();
+        }
+
+        // Test Segment class
+        System.out.println("\nTesting Segment class:");
+        Segment segment1 = new Segment(new Point(2, 2), 7, true);
+        Segment segment2 = new Segment(new Point(3, 3), 5, false);
+        System.out.println("Segment 1: " + segment1);
+        System.out.println("Segment 2: " + segment2);
+        segment1.display();
+        segment2.display();
+
+        // Test Surfacable interface
+        System.out.println("\nTesting Surfacable interface:");
+        Surfacable[] surfacables = {
+            new Circle(new Point(0, 0), 3),
+            new Rectangle(new Point(1, 1), 4, 6),
+            new Square(new Point(2, 2), 5)
+        };
+        for (int i = 0; i < surfacables.length; i++) {
+            System.out.println("Surfacable " + (i+1) + ": " + surfacables[i] + ", surface = " + surfacables[i].surface());
+        }
+
+        // Test getRandomFigure()
+        System.out.println("\nTesting getRandomFigure():");
+        for (int i = 0; i < 5; i++) {
+            Figure f = FigureUtil.getRandomFigure();
+            System.out.println("Random Figure " + (i+1) + ": " + f.getClass().getSimpleName() + " - " + f);
+        }
+
+        // Test getRandomSurfacable()
+        System.out.println("\nTesting getRandomSurfacable():");
+        for (int i = 0; i < 5; i++) {
+            Surfacable s = FigureUtil.getRandomSurfacable();
+            System.out.println("Random Surfacable " + (i+1) + ": " + s.getClass().getSimpleName() + " - " + s + ", surface = " + s.surface());
+        }
+    }
+}
