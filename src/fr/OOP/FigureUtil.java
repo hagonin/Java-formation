@@ -61,4 +61,26 @@ public class FigureUtil {
                 return new Square(p, side);
         }
     }
+
+    // Returns an array containing all the points from the provided figures
+    public static Point[] getPoints(Figure... figures) {
+        // First pass: count total points
+        int total = 0;
+        for (Figure f : figures) {
+            if (f != null) {
+                total += f.getPoints().length;
+            }
+        }
+        // Second pass: fill the array
+        Point[] result = new Point[total];
+        int idx = 0;
+        for (Figure f : figures) {
+            if (f != null) {
+                for (Point p : f.getPoints()) {
+                    result[idx++] = p;
+                }
+            }
+        }
+        return result;
+    }
 }

@@ -32,4 +32,9 @@ public class Circle extends Figure implements Surfacable {
     public double surface() {
         return Math.PI * radius * radius;
     }
+
+    @Override
+    public Point[] getPoints() {
+        return new Point[] { center };
+    }
 }
