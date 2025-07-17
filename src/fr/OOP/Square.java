@@ -67,4 +67,14 @@ public class Square extends Figure implements Surfacable {
     public double surface() {
         return side * side;
     }
+
+    @Override
+    public Point[] getPoints() {
+        return new Point[] {
+            getBottomLeftPoint(),
+            getBottomRightPoint(),
+            getTopLeftPoint(),
+            getTopRightPoint()
+        };
+    }
 } 

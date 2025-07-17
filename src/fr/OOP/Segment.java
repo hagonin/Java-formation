@@ -45,4 +45,9 @@ public class Segment extends Figure {
     public String toString() {
         return "[" + start + " to " + getEnd() + "]";
     }
+
+    @Override
+    public Point[] getPoints() {
+        return new Point[] { start, getEnd() };
+    }
 } 

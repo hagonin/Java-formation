@@ -117,5 +117,31 @@ public class TestShapes {
             Surfacable s = FigureUtil.getRandomSurfacable();
             System.out.println("Random Surfacable " + (i+1) + ": " + s.getClass().getSimpleName() + " - " + s + ", surface = " + s.surface());
         }
+
+        // Test getPoints() feature
+        System.out.println("\nTesting getPoints() feature:");
+        Circle testCircle = new Circle(new Point(10, 10), 5);
+        Segment testSegment = new Segment(new Point(0, 0), 7, true);
+        Rectangle testRectangle = new Rectangle(new Point(2, 2), 4, 3);
+        Square testSquare = new Square(new Point(5, 5), 2);
+
+        Figure[] testFigures = {testCircle, testSegment, testRectangle, testSquare};
+        String[] figureNames = {"Circle", "Segment", "Rectangle", "Square"};
+        for (int i = 0; i < testFigures.length; i++) {
+            System.out.print(figureNames[i] + " points: ");
+            Point[] pts = testFigures[i].getPoints();
+            for (Point p : pts) {
+                System.out.print(p + " ");
+            }
+            System.out.println();
+        }
+
+        // Test FigureUtil.getPoints(Figure...)
+        System.out.println("All points from all figures:");
+        Point[] allPoints = FigureUtil.getPoints(testFigures);
+        for (Point p : allPoints) {
+            System.out.print(p + " ");
+        }
+        System.out.println();
     }
 }
