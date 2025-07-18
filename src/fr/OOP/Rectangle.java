@@ -80,12 +80,23 @@ public class Rectangle extends Figure implements Surfacable {
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] {
-            getBottomLeftPoint(),
-            getBottomRightPoint(),
-            getTopLeftPoint(),
-            getTopRightPoint()
-        };
+    public java.util.Collection<Point> getPoints() {
+        java.util.ArrayList<Point> pts = new java.util.ArrayList<>();
+        pts.add(getBottomLeftPoint());
+        pts.add(getBottomRightPoint());
+        pts.add(getTopLeftPoint());
+        pts.add(getTopRightPoint());
+        return pts;
+    }
+
+    @Override
+    public boolean cover(Point p) {
+        int x = p.getX();
+        int y = p.getY();
+        int left = getBottomLeftPoint().getX();
+        int bottom = getBottomLeftPoint().getY();
+        int right = left + getWidth();
+        int top = bottom + getHeight();
+        return x >= left && x <= right && y >= bottom && y <= top;
     }
 }
