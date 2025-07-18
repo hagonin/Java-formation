@@ -1,5 +1,6 @@
 package fr.OOP;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class FigureUtil {
@@ -62,25 +63,59 @@ public class FigureUtil {
         }
     }
 
-    // Returns an array containing all the points from the provided figures
-    public static Point[] getPoints(Figure... figures) {
-        // First pass: count total points
-        int total = 0;
+    // Returns a collection containing all the points from the provided figures
+    public static java.util.Collection<Point> getPoints(Figure... figures) {
+        java.util.ArrayList<Point> result = new java.util.ArrayList<>();
         for (Figure f : figures) {
             if (f != null) {
-                total += f.getPoints().length;
-            }
-        }
-        // Second pass: fill the array
-        Point[] result = new Point[total];
-        int idx = 0;
-        for (Figure f : figures) {
-            if (f != null) {
-                for (Point p : f.getPoints()) {
-                    result[idx++] = p;
-                }
+                result.addAll(f.getPoints());
             }
         }
         return result;
+    }
+
+    // Returns a random Figure with X and Y between min and max (inclusive)
+    public static Figure getRandomFigure(int min, int max) {
+        int type = (int) (Math.random() * 4); // 0, 1, 2, or 3
+        int x = min + (int) (Math.random() * (max - min + 1));
+        int y = min + (int) (Math.random() * (max - min + 1));
+        switch (type) {
+            case 0:
+                int radius = 1 + (int) (Math.random() * 20);
+                return new Circle(new Point(x, y), radius);
+            case 1:
+                int width = 1 + (int) (Math.random() * 50);
+                int height = 1 + (int) (Math.random() * 50);
+                return new Rectangle(new Point(x, y), width, height);
+            case 2:
+                int side = 1 + (int) (Math.random() * 50);
+                return new Square(new Point(x, y), side);
+            default:
+                int length = 1 + (int) (Math.random() * 50);
+                boolean horizontal = Math.random() < 0.5;
+                return new Segment(new Point(x, y), length, horizontal);
+
+        }
+    }
+
+    // Returns a collection of n random figures with no restriction on X and Y
+    public static java.util.Collection<Figure> genere(int n) {
+        java.util.ArrayList<Figure> result = new java.util.ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            result.add(getRandomFigure(Integer.MIN_VALUE / 2, Integer.MAX_VALUE / 2));
+        }
+        return result;
+    }
+
+    // Returns the first Figure in the Dessin that covers the given point, or null if none do
+    public static Figure getFigureEn(Point p, Dessin d) {
+        Iterator<Figure> it = d.getFigure().iterator();
+        while (it.hasNext()) {
+            Figure f = it.next();
+            if (f.cover(p)) {
+                return f;
+            }
+        }
+        return null;
     }
 }

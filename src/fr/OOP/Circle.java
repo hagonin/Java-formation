@@ -1,5 +1,7 @@
 package fr.OOP;
 
+import java.util.List;
+
 public class Circle extends Figure implements Surfacable {
     private Point center;
     private int radius;
@@ -34,7 +36,14 @@ public class Circle extends Figure implements Surfacable {
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] { center };
+    public java.util.Collection<Point> getPoints() {
+       return List.of(center);
+    }
+
+    @Override
+    public boolean cover(Point p) {
+        int dx = p.getX() - center.getX();
+        int dy = p.getY() - center.getY();
+        return dx * dx + dy * dy <= radius * radius;
     }
 }

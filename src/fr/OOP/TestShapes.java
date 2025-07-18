@@ -94,54 +94,108 @@ public class TestShapes {
         segment2.display();
 
         // Test Surfacable interface
-        System.out.println("\nTesting Surfacable interface:");
-        Surfacable[] surfacables = {
-            new Circle(new Point(0, 0), 3),
-            new Rectangle(new Point(1, 1), 4, 6),
-            new Square(new Point(2, 2), 5)
-        };
-        for (int i = 0; i < surfacables.length; i++) {
-            System.out.println("Surfacable " + (i+1) + ": " + surfacables[i] + ", surface = " + surfacables[i].surface());
-        }
+//        System.out.println("\nTesting Surfacable interface:");
+//        Surfacable[] surfacables = {
+//            new Circle(new Point(0, 0), 3),
+//            new Rectangle(new Point(1, 1), 4, 6),
+//            new Square(new Point(2, 2), 5)
+//        };
+//        for (int i = 0; i < surfacables.length; i++) {
+//            System.out.println("Surfacable " + (i+1) + ": " + surfacables[i] + ", surface = " + surfacables[i].surface());
+//        }
 
         // Test getRandomFigure()
-        System.out.println("\nTesting getRandomFigure():");
-        for (int i = 0; i < 5; i++) {
-            Figure f = FigureUtil.getRandomFigure();
-            System.out.println("Random Figure " + (i+1) + ": " + f.getClass().getSimpleName() + " - " + f);
-        }
+//        System.out.println("\nTesting getRandomFigure():");
+//        for (int i = 0; i < 5; i++) {
+//            Figure f = FigureUtil.getRandomFigure();
+//            System.out.println("Random Figure " + (i+1) + ": " + f.getClass().getSimpleName() + " - " + f);
+//        }
 
         // Test getRandomSurfacable()
-        System.out.println("\nTesting getRandomSurfacable():");
-        for (int i = 0; i < 5; i++) {
-            Surfacable s = FigureUtil.getRandomSurfacable();
-            System.out.println("Random Surfacable " + (i+1) + ": " + s.getClass().getSimpleName() + " - " + s + ", surface = " + s.surface());
-        }
+//        System.out.println("\nTesting getRandomSurfacable():");
+//        for (int i = 0; i < 5; i++) {
+//            Surfacable s = FigureUtil.getRandomSurfacable();
+//            System.out.println("Random Surfacable " + (i+1) + ": " + s.getClass().getSimpleName() + " - " + s + ", surface = " + s.surface());
+//        }
 
         // Test getPoints() feature
-        System.out.println("\nTesting getPoints() feature:");
-        Circle testCircle = new Circle(new Point(10, 10), 5);
-        Segment testSegment = new Segment(new Point(0, 0), 7, true);
-        Rectangle testRectangle = new Rectangle(new Point(2, 2), 4, 3);
-        Square testSquare = new Square(new Point(5, 5), 2);
-
-        Figure[] testFigures = {testCircle, testSegment, testRectangle, testSquare};
-        String[] figureNames = {"Circle", "Segment", "Rectangle", "Square"};
-        for (int i = 0; i < testFigures.length; i++) {
-            System.out.print(figureNames[i] + " points: ");
-            Point[] pts = testFigures[i].getPoints();
-            for (Point p : pts) {
-                System.out.print(p + " ");
-            }
-            System.out.println();
-        }
+//        System.out.println("\nTesting getPoints() feature:");
+//        Circle testCircle = new Circle(new Point(10, 10), 5);
+//        Segment testSegment = new Segment(new Point(0, 0), 7, true);
+//        Rectangle testRectangle = new Rectangle(new Point(2, 2), 4, 3);
+//        Square testSquare = new Square(new Point(5, 5), 2);
+//
+//        Figure[] testFigures = {testCircle, testSegment, testRectangle, testSquare};
+//        String[] figureNames = {"Circle", "Segment", "Rectangle", "Square"};
+//        for (int i = 0; i < testFigures.length; i++) {
+//            System.out.print(figureNames[i] + " points: ");
+//            java.util.Collection<Point> pts = testFigures[i].getPoints();
+//            for (Point p : pts) {
+//                System.out.print(p + " ");
+//            }
+//            System.out.println();
+//        }
 
         // Test FigureUtil.getPoints(Figure...)
-        System.out.println("All points from all figures:");
-        Point[] allPoints = FigureUtil.getPoints(testFigures);
-        for (Point p : allPoints) {
-            System.out.print(p + " ");
+//        System.out.println("All points from all figures:");
+//        java.util.Collection<Point> allPoints = FigureUtil.getPoints(testFigures);
+//        for (Point p : allPoints) {
+//            System.out.print(p + " ");
+//        }
+//        System.out.println();
+//
+//        // Test Dessin and FigureUtil.genere(int n)
+//        System.out.println("\nTesting Dessin and FigureUtil.genere(int n):");
+//        Dessin dessin = new Dessin();
+//        // Add a few figures manually
+//        dessin.add(new Circle(new Point(10, 10), 5));
+//        dessin.add(new Rectangle(new Point(2, 2), 4, 3));
+//        dessin.add(new Square(new Point(5, 5), 2));
+//        System.out.println("Figures in Dessin after manual add:");
+//        for (Figure f : dessin.getFigure()) {
+//            System.out.println(f);
+//        }
+//
+//        // Generate random figures and add to Dessin
+//        java.util.Collection<Figure> randomFigures = FigureUtil.genere(5);
+//        System.out.println("\nRandomly generated figures:");
+//        for (Figure f : randomFigures) {
+//            System.out.println(f);
+//            dessin.add(f);
+//        }
+//        System.out.println("\nAll figures in Dessin after adding random figures:");
+//        for (Figure f : dessin.getFigure()) {
+//            System.out.println(f);
+//        }
+
+        // Test cover(Point) and FigureUtil.getFigureEn(Point, Dessin)
+        System.out.println("\nTesting cover(Point) and getFigureEn(Point, Dessin):");
+        Dessin testDessin = new Dessin();
+        Figure rect = new Rectangle(new Point(0, 0), 10, 5);
+        Figure circ = new Circle(new Point(5, 5), 3);
+        Figure seg = new Segment(new Point(2, 2), 6, true);
+        Figure sq = new Square(new Point(8, 1), 4);
+        testDessin.add(rect);
+        testDessin.add(circ);
+        testDessin.add(seg);
+        testDessin.add(sq);
+
+        Point[] testPoints = {
+            new Point(1, 1),   // inside rect
+            new Point(5, 5),   // inside circ and rect
+            new Point(2, 2),   // on seg and in rect
+            new Point(10, 5),  // on edge of rect
+            new Point(9, 2),   // inside sq
+            new Point(20, 20)  // outside all
+        };
+        for (Point p : testPoints) {
+            System.out.print("Point " + p + " is covered by: ");
+            Figure found = FigureUtil.getFigureEn(p, testDessin);
+            if (found != null) {
+                System.out.println(found.getType() + " " + found);
+            } else {
+                System.out.println("none");
+            }
         }
-        System.out.println();
     }
 }

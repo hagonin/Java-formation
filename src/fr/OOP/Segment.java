@@ -1,7 +1,9 @@
 package fr.OOP;
 
+import java.util.List;
+
 public class Segment extends Figure {
-    private Point start;
+    private Point start, end;
     private int length;
     private boolean horizontal;
 
@@ -47,7 +49,18 @@ public class Segment extends Figure {
     }
 
     @Override
-    public Point[] getPoints() {
-        return new Point[] { start, getEnd() };
+    public java.util.Collection<Point> getPoints() {
+        return List.of(start, end);
+    }
+
+    @Override
+    public boolean cover(Point p) {
+        if (horizontal) {
+            return p.getY() == start.getY() &&
+                   p.getX() >= start.getX() && p.getX() <= getEnd().getX();
+        } else {
+            return p.getX() == start.getX() &&
+                   p.getY() >= start.getY() && p.getY() <= getEnd().getY();
+        }
     }
 } 
