@@ -197,5 +197,58 @@ public class TestShapes {
                 System.out.println("none");
             }
         }
+
+        // Test Dessin and FigureUtil sorting features
+//        System.out.println("\nTesting Dessin and FigureUtil sorting features:");
+//        Dessin dessin = new Dessin();
+//        for (int i = 0; i < 6; i++) {
+//            dessin.add(FigureUtil.getRandomFigure());
+//        }
+//        System.out.println("All figures in Dessin:");
+//        for (Figure f : dessin.getFigure()) {
+//            System.out.println(f);
+//        }
+//
+//        // Sort by distance to origin
+//        System.out.println("\nFigures sorted by distance to origin:");
+//        java.util.List<Figure> sortedByOrigin = FigureUtil.trieProcheOrigine(dessin);
+//        for (Figure f : sortedByOrigin) {
+//            System.out.println(f + " | distanceOrigine=" + f.distanceOrigine());
+//        }
+//
+//        // Sort by surface (dominant)
+//        System.out.println("\nFigures sorted by surface (dominant):");
+//        java.util.List<Figure> sortedBySurface = FigureUtil.trieDominant(dessin);
+//        for (Figure f : sortedBySurface) {
+//            System.out.print(f);
+//            if (f instanceof Surfacable) {
+//                System.out.println(" | surface=" + ((Surfacable)f).surface());
+//            } else {
+//                System.out.println();
+//            }
+//        }
+
+        // Test color in equality
+//        System.out.println("\nTesting color in equality:");
+//        Figure r1 = new Rectangle(new Point(0, 0), 4, 4, Couleur.ROUGE);
+//        Figure r2 = new Rectangle(new Point(0, 0), 4, 4, Couleur.BLEU);
+//        System.out.println("r1: " + r1);
+//        System.out.println("r2: " + r2);
+//        System.out.println("r1.equals(r2): " + r1.equals(r2)); // should be false due to color
+
+        // Test save/load Dessin to/from file
+        System.out.println("\nTesting save/load Dessin to/from file:");
+        Dessin dessinToSave = new Dessin();
+        for (int i = 0; i < 5; i++) {
+            dessinToSave.add(FigureUtil.getRandomFigure());
+        }
+        String filename = "dessin_test.txt";
+        FigureUtil.save(dessinToSave, filename);
+        System.out.println("Dessin saved to " + filename);
+        Dessin loadedDessin = FigureUtil.load(filename);
+        System.out.println("Figures loaded from file:");
+        for (Figure f : loadedDessin.getFigure()) {
+            System.out.println(f);
+        }
     }
 }
