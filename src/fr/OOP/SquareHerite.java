@@ -1,8 +1,20 @@
 package fr.OOP;
 
 public class SquareHerite extends Rectangle {
+    private Couleur couleur;
+
     public SquareHerite(Point bottomLeftPoint, int side) {
-        super(bottomLeftPoint, side, side);
+        this(bottomLeftPoint, side, Couleur.getCouleurDefaut());
+    }
+
+    public SquareHerite(Point bottomLeftPoint, int side, Couleur couleur) {
+        super(bottomLeftPoint, side, side, couleur);
+        this.couleur = couleur;
+    }
+
+    @Override
+    public Couleur getCouleur() {
+        return couleur;
     }
 
     @Override
@@ -12,10 +24,7 @@ public class SquareHerite extends Rectangle {
 
     @Override
     public String toString() {
-        return "[" + getType() + " " + getBottomLeftPoint().toString() +
-                getBottomRightPoint().toString() +
-                getTopLeftPoint().toString() +
-                getTopRightPoint().toString() + "]";
+        return "[SQUARE " + couleur.getCode() + " " + getBottomLeftPoint() + getBottomRightPoint() + getTopLeftPoint() + getTopRightPoint() + "]";
     }
 
     @Override
@@ -35,21 +44,22 @@ public class SquareHerite extends Rectangle {
         if (this == obj) return true;
         if (obj == null) return false;
         if (!(obj instanceof Rectangle) && !(obj instanceof Square) && !(obj instanceof SquareHerite)) return false;
+        java.util.Collection<Point> thisPoints = this.getPoints();
+        java.util.Collection<Point> otherPoints;
+        Couleur otherColor;
         if (obj instanceof SquareHerite) {
             SquareHerite other = (SquareHerite) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.getWidth() == other.getWidth(); // width==height for SquareHerite
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
         } else if (obj instanceof Rectangle) {
             Rectangle other = (Rectangle) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.getWidth() == other.getWidth() &&
-                   this.getHeight() == other.getHeight() &&
-                   this.getWidth() == this.getHeight(); // must be square
-        } else if (obj instanceof Square) {
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
+        } else { // Square
             Square other = (Square) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.getWidth() == other.getSide();
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
         }
-        return false;
+        return thisPoints.containsAll(otherPoints) && otherPoints.containsAll(thisPoints) && this.couleur == otherColor;
     }
 } 

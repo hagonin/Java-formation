@@ -6,12 +6,18 @@ public class Segment extends Figure {
     private Point start, end;
     private int length;
     private boolean horizontal;
+    private Couleur couleur;
 
     //Constructor
     public Segment(Point start, int length, boolean horizontal) {
+        this(start, length, horizontal, Couleur.getCouleurDefaut());
+    }
+
+    public Segment(Point start, int length, boolean horizontal, Couleur couleur) {
         this.start = start;
         this.length = length;
         this.horizontal = horizontal;
+        this.couleur = couleur;
     }
 
     //Getters
@@ -45,7 +51,7 @@ public class Segment extends Figure {
     //Get the string representation of the segment
     @Override
     public String toString() {
-        return "[" + start + " to " + getEnd() + "]";
+        return "[SEGMENT " + couleur.getCode() + " " + start + " to " + getEnd() + "]";
     }
 
     @Override
@@ -62,5 +68,18 @@ public class Segment extends Figure {
             return p.getX() == start.getX() &&
                    p.getY() >= start.getY() && p.getY() <= getEnd().getY();
         }
+    }
+
+    @Override
+    public Couleur getCouleur() {
+        return couleur;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(obj instanceof Segment)) return false;
+        Segment other = (Segment) obj;
+        return this.start.equals(other.start) && this.getEnd().equals(other.getEnd()) && this.couleur == other.couleur;
     }
 } 

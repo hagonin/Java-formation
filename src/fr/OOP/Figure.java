@@ -5,6 +5,7 @@ public abstract class Figure {
     protected abstract String getType();
     public abstract java.util.Collection<Point> getPoints();
     public abstract boolean cover(Point p);
+    public abstract Couleur getCouleur();
     
     public void display() {
         System.out.println(this);

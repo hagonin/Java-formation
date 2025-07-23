@@ -1,6 +1,4 @@
 package fr.ExerciceNote;
-
-
 import fr.ExerciceNote.Vehicules.*;
 
 public class Main2 {

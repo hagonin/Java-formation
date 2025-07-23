@@ -5,8 +5,9 @@ import fr.ExerciceNote.Port;
 public class Bateau extends Maritime implements AMoteur {
     private int reservoir;
 
+    //Constructeur avec réservoir par défaut 200L
     public Bateau(String marque, String modele, String numImmat) {
-        this(marque, modele, numImmat, 200); // Default 200L tank
+        this(marque, modele, numImmat, 200); // Default 200L réservoir
     }
 
     public Bateau(String marque, String modele, String numImmat, int reservoir) {
