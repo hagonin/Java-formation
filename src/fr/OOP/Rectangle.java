@@ -4,12 +4,18 @@ public class Rectangle extends Figure implements Surfacable {
     private Point bottomLeftPoint;
     private int width;
     private int height;
+    private Couleur couleur;
 
     // Constructor
     public Rectangle(Point bottomLeftPoint, int width, int height) {
+        this(bottomLeftPoint, width, height, Couleur.getCouleurDefaut());
+    }
+
+    public Rectangle(Point bottomLeftPoint, int width, int height, Couleur couleur) {
         this.bottomLeftPoint = bottomLeftPoint;
         this.width = width;
         this.height = height;
+        this.couleur = couleur;
     }
 
     // Getters
@@ -40,13 +46,15 @@ public class Rectangle extends Figure implements Surfacable {
         return "RECT";
     }
 
+    @Override
+    public Couleur getCouleur() {
+        return couleur;
+    }
+
     // toString() [RECT [X;Y][X;Y][X;Y][X;Y]]
     @Override
     public String toString() {
-        return "[" + getType() + " " + getBottomLeftPoint().toString() +
-                getBottomRightPoint().toString() +
-                getTopLeftPoint().toString() +
-                getTopRightPoint().toString() + "]";
+        return "[RECT " + couleur.getCode() + " " + getBottomLeftPoint() + getBottomRightPoint() + getTopLeftPoint() + getTopRightPoint() + "]";
     }
 
     //Equals method 
@@ -55,23 +63,23 @@ public class Rectangle extends Figure implements Surfacable {
         if (this == obj) return true;
         if (obj == null) return false;
         if (!(obj instanceof Rectangle) && !(obj instanceof Square) && !(obj instanceof SquareHerite)) return false;
+        java.util.Collection<Point> thisPoints = this.getPoints();
+        java.util.Collection<Point> otherPoints;
+        Couleur otherColor;
         if (obj instanceof Rectangle) {
             Rectangle other = (Rectangle) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.width == other.width &&
-                   this.height == other.height;
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
         } else if (obj instanceof Square) {
             Square other = (Square) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.width == other.getSide() &&
-                   this.height == other.getSide();
-        } else if (obj instanceof SquareHerite) {
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
+        } else { // SquareHerite
             SquareHerite other = (SquareHerite) obj;
-            return this.getBottomLeftPoint().equals(other.getBottomLeftPoint()) &&
-                   this.width == other.getWidth() &&
-                   this.height == other.getHeight();
+            otherPoints = other.getPoints();
+            otherColor = other.getCouleur();
         }
-        return false;
+        return thisPoints.containsAll(otherPoints) && otherPoints.containsAll(thisPoints) && this.couleur == otherColor;
     }
 
     @Override

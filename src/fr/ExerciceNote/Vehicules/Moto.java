@@ -5,10 +5,12 @@ import fr.ExerciceNote.Port;
 public class Moto extends Routier implements AMoteur {
     private int reservoir;
 
+    //Constructeur avec réservoir par défaut 20L
     public Moto(String marque, String modele, String numImmat) {
-        this(marque, modele, numImmat, 20); // Default 20L tank
+        this(marque, modele, numImmat, 20); // Default 20L réservoir
     }
 
+    //Constructeur avec réservoir customisé
     public Moto(String marque, String modele, String numImmat, int reservoir) {
         super(marque, modele, numImmat);
         if (reservoir <= 0) {

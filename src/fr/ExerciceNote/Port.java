@@ -1,5 +1,7 @@
 package fr.ExerciceNote;
+
 import fr.ExerciceNote.Vehicules.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +15,12 @@ public class Port {
     private int reservoirMax;
     private int reservoirActuel;
 
-    // Default constructor
+    //  Constructeur par défaut créant un port avec des capacités standard
     public Port() {
         this(10, 5, 20, 500);
     }
 
-    // Constructor with custom limits
+    // Constructeur pour un port avec des limites de capacité personnalisées
     public Port(int maxVoitures, int maxMotos, int maxMaritimes, int reservoirMax) {
         if (maxVoitures < 0 || maxMotos < 0 || maxMaritimes < 0) {
             throw new IllegalArgumentException("Number of parking spaces must be >= 0");
@@ -38,7 +40,8 @@ public class Port {
         this.maritimes = new ArrayList<>();
     }
 
-    // Park a road vehicle
+    // Méthode pour garer un véhicule routier
+    // Exception Si aucune place de parking n'est disponible pour ce type de véhicule
     public void garer(Routier vehicule) throws Exception {
         if (vehicule instanceof Voiture) {
             if (voitures.size() >= maxVoitures) {
@@ -53,7 +56,7 @@ public class Port {
         }
     }
 
-    // Moor a maritime vehicle
+    //Exception Si aucune place d'amarrage n'est disponible
     public void amarer(Maritime vehicule) throws Exception {
         if (maritimes.size() >= maxMaritimes) {
             throw new Exception("Plus de place dans le bassin");
@@ -61,7 +64,8 @@ public class Port {
         maritimes.add(vehicule);
     }
 
-    // Remove a vehicle from port
+    // Méthode pour retirer un véhicule du port
+    //Exception Si le véhicule n'est pas trouvé dans le port
     public void sortir(Vehicule vehicule) throws Exception {
         boolean removed = false;
 
@@ -78,7 +82,8 @@ public class Port {
         }
     }
 
-    // Get fuel from port reservoir
+    //Méthode pour obtenir du carburant du port
+    //Exception Si le carburant disponible dans le réservoir du port est insuffisant
     public void obtenirCarburant(int quantite) throws Exception {
         if (reservoirActuel < quantite) {
             throw new Exception("Pas assez de carburant dans le port");
@@ -86,18 +91,37 @@ public class Port {
         reservoirActuel -= quantite;
     }
 
-    // Refill port's fuel reservoir
+    // Méthode pour remplir le réservoir de carburant du port à sa capacité maximale
     public void remplirReservoir() {
         reservoirActuel = reservoirMax;
     }
 
-    public int getReservoirMax() { return reservoirMax; }
-    public int getReservoir() { return reservoirActuel; }
+    //Méthodes pour obtenir la capacité maximale du réservoir de carburant
+    public int getReservoirMax() {
+        return reservoirMax;
+    }
 
+    //Méthode pour obtenir le niveau actuel de carburant dans le réservoir
+    public int getReservoir() {
+        return reservoirActuel;
+    }
+
+    //Méthode pour formatter la chaine de caractères montrant l'état du port avec bateaux et voiliers séparés
     @Override
     public String toString() {
+        int nbBateaux = 0;
+        int nbVoiliers = 0;
+
+        for (Maritime maritime : maritimes) {
+            if (maritime instanceof Bateau) {
+                nbBateaux++;
+            } else if (maritime instanceof Voilier) {
+                nbVoiliers++;
+            }
+        }
+
         return "Port: " + voitures.size() + " voitures, " + motos.size() +
-                " motos, " + maritimes.size() + " bateaux/voiliers, " +
+                " motos, " + nbBateaux + " bateaux, " + nbVoiliers + " voiliers, " +
                 reservoirActuel + " litres de carburant restant";
     }
 }
