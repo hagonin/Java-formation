@@ -6,6 +6,10 @@ public class Salarie {
     private double salaire;
 
     public Salarie(String nom, String prenom, double salaire) {
+        validateNom(nom);
+        validatePrenom(prenom);
+        validateSalaire(salaire);
+        
         this.nom = nom.trim();
         this.prenom = prenom.trim();
         this.salaire = salaire;
@@ -55,5 +59,30 @@ public class Salarie {
     }
     public String getNomComplet() {
         return nom + " " + prenom;
+    }
+    
+    // Validation helper methods
+    private void validateNom(String nom) {
+        if (nom == null) {
+            throw new IllegalArgumentException("Le nom ne peut pas être null");
+        }
+        if (nom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le nom ne peut pas être vide");
+        }
+    }
+    
+    private void validatePrenom(String prenom) {
+        if (prenom == null) {
+            throw new IllegalArgumentException("Le prénom ne peut pas être null");
+        }
+        if (prenom.trim().isEmpty()) {
+            throw new IllegalArgumentException("Le prénom ne peut pas être vide");
+        }
+    }
+    
+    private void validateSalaire(double salaire) {
+        if (salaire < 0) {
+            throw new IllegalArgumentException("Le salaire ne peut pas être négatif");
+        }
     }
 }

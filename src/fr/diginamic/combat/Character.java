@@ -24,7 +24,7 @@ public class Character {
     public Character() {
         this.strength = generateRandomNumber(12,18);
         this.healthPoints = generateRandomNumber(20, 50);
-        this.maxHealthPoints = this.maxHealthPoints; //start at full health
+        this.maxHealthPoints = this.healthPoints; //start at full health
         this.score = 0;   //new chacracter starts with 0 score
 
 

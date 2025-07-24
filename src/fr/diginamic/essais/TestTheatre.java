@@ -52,7 +52,9 @@ public class TestTheatre {
                 String.format("%.1f%%", (theatre.getTotalClientsInscrits() * 100.0 / theatre.getCapaciteMax())));
         System.out.println("Chiffre d'affaires total: " + theatre.getChiffreAffraires() + "€");
         System.out.println("Revenus moyens par client: " +
-                String.format("%.2f€", theatre.getChiffreAffraires() / theatre.getTotalClientsInscrits()));
+                (theatre.getTotalClientsInscrits() > 0 ? 
+                    String.format("%.2f€", theatre.getChiffreAffraires() / theatre.getTotalClientsInscrits()) : 
+                    "N/A (aucun client)"));
         System.out.println("Statut: " + (theatre.estComplet() ? "COMPLET" : "Places disponibles"));
         System.out.println("=".repeat(50));
     }

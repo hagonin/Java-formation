@@ -1,6 +1,6 @@
 package fr.diginamic.maison;
 
-public class Cuisine extends Chambre {
+public class Cuisine extends Piece {
     public Cuisine(double surficie, int numEtage) {
         super(surficie, numEtage);
     }
