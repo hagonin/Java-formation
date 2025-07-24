@@ -86,44 +86,30 @@ public class Recensement {
     }
 
     //Get top 10 most populated regions
-    public List<Region> getTop10Regions() {
+    public List<String[]> getTop10Regions() {
         Map<String, Integer> regionPopulations = new HashMap<>();
-        Map<String, String> regionNames = new HashMap<>();
-        
         for (City city : cities) {
-            String regionCode = city.getRegionCode();
             String regionName = city.getRegionName();
-            regionPopulations.merge(regionCode, city.getTotalPopulation(), Integer::sum);
-            regionNames.put(regionCode, regionName);
+            regionPopulations.merge(regionName, city.getTotalPopulation(), Integer::sum);
         }
-        
         return regionPopulations.entrySet().stream()
-                .map(entry -> new Region(entry.getKey(), regionNames.get(entry.getKey()), entry.getValue()))
-                .sorted((r1, r2) -> Integer.compare(r2.getTotalPopulation(), r1.getTotalPopulation()))
+                .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
                 .limit(10)
+                .map(e -> new String[]{e.getKey(), String.valueOf(e.getValue())})
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get top 10 most populated departments
-     */
-    public List<Departement> getTop10Departments() {
+    //Get top 10 most populated departments
+    public List<String[]> getTop10Departments() {
         Map<String, Integer> deptPopulations = new HashMap<>();
-        Map<String, String> deptNames = new HashMap<>();
-        
         for (City city : cities) {
             String deptCode = city.getDepartmentCode();
             deptPopulations.merge(deptCode, city.getTotalPopulation(), Integer::sum);
-            // Use the first city's region name as department name for simplicity
-            if (!deptNames.containsKey(deptCode)) {
-                deptNames.put(deptCode, city.getRegionName());
-            }
         }
-        
         return deptPopulations.entrySet().stream()
-                .map(entry -> new Departement(entry.getKey(), deptNames.get(entry.getKey()), entry.getValue()))
-                .sorted((d1, d2) -> Integer.compare(d2.getTotalPopulation(), d1.getTotalPopulation()))
+                .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
                 .limit(10)
+                .map(e -> new String[]{e.getKey(), String.valueOf(e.getValue())})
                 .collect(Collectors.toList());
     }
 

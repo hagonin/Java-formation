@@ -11,9 +11,7 @@ public class City {
     private String cityName;
     private int totalPopulation;
 
-    /**
-     * Constructor for City
-     */
+    // Constructor
     public City(String regionCode, String regionName, String departmentCode, 
                 String cityCode, String cityName, int totalPopulation) {
         this.regionCode = regionCode;

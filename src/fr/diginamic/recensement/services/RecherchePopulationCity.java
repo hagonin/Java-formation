@@ -1,5 +1,7 @@
-package fr.diginamic.recensement;
+package fr.diginamic.recensement.services;
 
+import fr.diginamic.recensement.Recensement;
+import fr.diginamic.recensement.City;
 import java.util.Scanner;
 
 /**
