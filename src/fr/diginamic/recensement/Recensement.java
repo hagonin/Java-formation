@@ -18,7 +18,6 @@ public class Recensement {
     }
 
 //Load cities from CSV file
-
     public void loadFromCSV(String filePath) {
         try (Scanner scanner = new Scanner(new File(filePath))) {
             // Skip header line
@@ -85,7 +84,7 @@ public class Recensement {
     }
 
     //Get top 10 most populated regions
-    public List<String[]> getTop10Regions() {
+    public List<Region> getTop10Regions() {
         Map<String, Integer> regionPopulations = new HashMap<>();
         for (City city : cities) {
             String regionName = city.getRegionName();
@@ -94,12 +93,12 @@ public class Recensement {
         return regionPopulations.entrySet().stream()
                 .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
                 .limit(10)
-                .map(e -> new String[]{e.getKey(), String.valueOf(e.getValue())})
+                .map(e -> new Region(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
     }
 
     //Get top 10 most populated departments
-    public List<String[]> getTop10Departments() {
+    public List<Departement> getTop10Departments() {
         Map<String, Integer> deptPopulations = new HashMap<>();
         for (City city : cities) {
             String deptCode = city.getDepartmentCode();
@@ -108,13 +107,11 @@ public class Recensement {
         return deptPopulations.entrySet().stream()
                 .sorted((e1, e2) -> Integer.compare(e2.getValue(), e1.getValue()))
                 .limit(10)
-                .map(e -> new String[]{e.getKey(), String.valueOf(e.getValue())})
+                .map(e -> new Departement(e.getKey(), e.getValue()))
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get top 10 most populated cities in a department
-     */
+    //Get top 10 most populated cities in a department
     public List<City> getTop10CitiesInDepartment(String departmentCode) {
         return cities.stream()
                 .filter(city -> city.getDepartmentCode().equalsIgnoreCase(departmentCode))
@@ -123,9 +120,7 @@ public class Recensement {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get top 10 most populated cities in a region
-     */
+    //Get top 10 most populated cities in a region
     public List<City> getTop10CitiesInRegion(String regionName) {
         return cities.stream()
                 .filter(city -> city.getRegionName().equalsIgnoreCase(regionName))
@@ -134,9 +129,7 @@ public class Recensement {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get top 10 most populated cities in France
-     */
+    //Get top 10 most populated cities in France
     public List<City> getTop10CitiesInFrance() {
         return cities.stream()
                 .sorted((c1, c2) -> Integer.compare(c2.getTotalPopulation(), c1.getTotalPopulation()))

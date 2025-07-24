@@ -4,9 +4,7 @@ import fr.diginamic.recensement.Recensement;
 import fr.diginamic.recensement.City;
 import java.util.Scanner;
 
-/**
- * Service to search for population of a specific city
- */
+//Service to search for population of a specific city
 public class RecherchePopulationCity extends MenuService {
     
     @Override
