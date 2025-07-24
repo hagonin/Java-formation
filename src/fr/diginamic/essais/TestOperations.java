@@ -45,7 +45,7 @@ public class TestOperations {
         try {
             System.out.println("\nTesting division by zero:");
             Operations.calcul(10.0, 0.0, '/');
-        } catch (ArithmeticException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Caught expected exception: " + e.getMessage());
         }
     }

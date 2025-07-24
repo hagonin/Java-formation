@@ -37,10 +37,10 @@ public class TestMoyenne {
         System.out.println("Mixed values: " + mixedAverage + " (expected: 0)");
 
         System.out.println("\n------------ test empty collection ------------");
-        CalculMoyenne emtpyCalc = new CalculMoyenne();
+        CalculMoyenne emptyCalc = new CalculMoyenne();
         try {
-            emtpyCalc.calcul();
-            System.out.println("Empty collection average: " + emtpyCalc);
+            emptyCalc.calcul();
+            System.out.println("Empty collection average: " + emptyCalc);
         } catch (IllegalStateException e) {
             System.out.println("Caught expected exception for empty collection: " + e.getMessage());
         }
