@@ -3,9 +3,7 @@ package fr.diginamic.recensement.services;
 import fr.diginamic.recensement.Recensement;
 import java.util.Scanner;
 
-/**
- * Service to search for population of a specific department
- */
+//Service to search for population of a specific department
 public class RecherchePopulationDepartement extends MenuService {
     
     @Override

@@ -5,9 +5,7 @@ import fr.diginamic.recensement.City;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Service to display the 10 most populated cities in a department
- */
+//Service to display the 10 most populated cities in a department
 public class Affichage10VillesPlusPeupleesDepartement extends MenuService {
     
     @Override
