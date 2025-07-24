@@ -12,25 +12,24 @@ import java.util.stream.Collectors;
 public class Recensement {
     private List<City> cities;
 
-//Constructor
+    //Constructor
     public Recensement() {
         this.cities = new ArrayList<>();
     }
 
-    /**
-     * Load cities from CSV file
-     */
+//Load cities from CSV file
+
     public void loadFromCSV(String filePath) {
         try (Scanner scanner = new Scanner(new File(filePath))) {
             // Skip header line
             if (scanner.hasNextLine()) {
                 scanner.nextLine();
             }
-            
+
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 String[] parts = line.split(";");
-                
+
                 if (parts.length >= 10) {
                     try {
                         String regionCode = parts[0].trim();
@@ -41,9 +40,9 @@ public class Recensement {
                         // Parse population with potential thousands separators
                         String populationStr = parts[9].trim().replace(" ", "");
                         int population = Integer.parseInt(populationStr);
-                        
-                        City city = new City(regionCode, regionName, departmentCode, 
-                                           cityCode, cityName, population);
+
+                        City city = new City(regionCode, regionName, departmentCode,
+                                cityCode, cityName, population);
                         cities.add(city);
                     } catch (NumberFormatException e) {
                         System.err.println("Erreur de parsing pour la ligne: " + line);
@@ -56,7 +55,7 @@ public class Recensement {
         }
     }
 
-   //get all cities
+    //get all cities
     public List<City> getCities() {
         return cities;
     }

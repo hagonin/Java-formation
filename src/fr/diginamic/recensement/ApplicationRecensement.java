@@ -73,37 +73,23 @@ public class ApplicationRecensement {
      */
     private static boolean traiterChoix(int choix, Recensement recensement, Scanner scanner) {
         MenuService service = null;
-        
+
         switch (choix) {
-            case 1:
-                service = new RecherchePopulationCity();
-                break;
-            case 2:
-                service = new RecherchePopulationDepartement();
-                break;
-            case 3:
-                service = new RecherchePopulationRegion();
-                break;
-            case 4:
-                service = new Affichage10RegionsPlusPeuplees();
-                break;
-            case 5:
-                service = new Affichage10DepartementsPlusPeuplees();
-                break;
-            case 6:
-                service = new Affichage10VillesPlusPeupleesDepartement();
-                break;
-            case 7:
-                service = new Affichage10VillesPlusPeupleesRegion();
-                break;
-            case 8:
-                service = new Affichage10VillesPlusPeupleesFrance();
-                break;
-            case 9:
+            case 1 -> service = new RecherchePopulationCity();
+            case 2 -> service = new RecherchePopulationDepartement();
+            case 3 -> service = new RecherchePopulationRegion();
+            case 4 -> service = new Affichage10RegionsPlusPeuplees();
+            case 5 -> service = new Affichage10DepartementsPlusPeuplees();
+            case 6 -> service = new Affichage10VillesPlusPeupleesDepartement();
+            case 7 -> service = new Affichage10VillesPlusPeupleesRegion();
+            case 8 -> service = new Affichage10VillesPlusPeupleesFrance();
+            case 9 -> {
                 return false; // Exit the application
-            default:
+            }
+            default -> {
                 System.out.println("Choix invalide. Veuillez choisir un nombre entre 1 et 9.");
                 return true;
+            }
         }
         
         if (service != null) {
