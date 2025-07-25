@@ -1,8 +1,6 @@
 package fr.diginamic.recensement;
 
-/**
- * Represents a city with its population and administrative information
- */
+//Represents a city with its population and administrative information
 public class City {
     private String regionCode;
     private String regionName;
