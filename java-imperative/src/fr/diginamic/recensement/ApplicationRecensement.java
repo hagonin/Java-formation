@@ -19,7 +19,7 @@ public class ApplicationRecensement {
         System.out.println("=== Application de Recensement de Population ===");
         System.out.println("Chargement des données...");
         
-        // Try to load from default path, otherwise ask user for path
+        // Try to load from default path
         try {
             recensement.loadFromCSV(CSV_FILE_PATH);
         } catch (Exception e) {
