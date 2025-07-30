@@ -15,6 +15,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>17</maven.compiler.release>
     <junit.version>5.11.0</junit.version>
+    <mode>DEV</mode>
   </properties>
 
   <dependencyManagement>
@@ -52,14 +53,32 @@
 
   <build>
     <finalName>${project.artifactId}</finalName>
-    plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <configuration>
-                <archive>
-            <manifest>
-
-         <configuration>
-      </plugin>
+    <!-- Activation du remplacement des variables via Maven -->
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
   </build>
+
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <mode>DEV</mode>
+      </properties>
+    </profile>
+    
+    <profile>
+      <id>prod</id>
+      <properties>
+        <mode>PROD</mode>
+      </properties>
+    </profile>
+  </profiles>
+
 </project>
